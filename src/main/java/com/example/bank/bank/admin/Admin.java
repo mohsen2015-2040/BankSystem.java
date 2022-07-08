@@ -14,7 +14,6 @@ public class Admin {
 
     @Id
     private String id;
-
     private String first_name;
     private String last_name;
     private String national_id;
@@ -28,7 +27,11 @@ public class Admin {
 
     private LocalDate updated_at;
 
-    public Admin(String id, String first_name, String last_name, String national_id, String password, Gender gender, String mobile, LocalDate birth_date, LocalDate created_at, LocalDate updated_at) {
+    public Admin(String id, String first_name, String last_name, String national_id, String password, Gender gender, String mobile, LocalDate birth_date, LocalDate created_at, LocalDate updated_at)
+    throws UserPasswordException{
+        if (password.length() < 3){
+            throw new UserPasswordException("The password is too short!");
+        }
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -86,7 +89,10 @@ public class Admin {
     public void setNational_id(String national_id) {
         this.national_id = national_id;
     }
-    public void setPassword(String password) {
+    public void setPassword(String password) throws UserPasswordException{
+        if (password.length() < 3){
+            throw new UserPasswordException("The password is too short!");
+        }
         this.password = password;
     }
     public void setGender(Gender gender) {

@@ -20,12 +20,17 @@ public class Customer {
     private Gender gender;
     private String mobile;
     private LocalDate birth_date;
+    private
 
     @CreatedDate
     private LocalDate created_at;
     private LocalDate updated_at;
 
-    public Customer(String id, String first_name, String last_name, String national_id, String password, Gender gender, String mobile, LocalDate birth_date, LocalDate created_at, LocalDate updated_at) {
+    public Customer(String id, String first_name, String last_name, String national_id, String password, Gender gender, String mobile, LocalDate birth_date, LocalDate created_at, LocalDate updated_at)
+    throws UserPasswordException{
+        if (password.length() < 3){
+            throw new UserPasswordException("The password is too short!")
+        }
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;

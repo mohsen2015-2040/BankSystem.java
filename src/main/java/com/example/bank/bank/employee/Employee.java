@@ -24,7 +24,11 @@ public class Employee {
     private LocalDate created_at;
     private LocalDate updated_at;
 
-    public Employee(String id, String first_name, String last_name, String national_id, String password, Gender gender, String mobile, LocalDate birth_date, LocalDate created_at, LocalDate updated_at) {
+    public Employee(String id, String first_name, String last_name, String national_id, String password, Gender gender, String mobile, LocalDate birth_date, LocalDate created_at, LocalDate updated_at)
+    throws UserPasswordException{
+        if (password.length() < 3){
+            throw new UserPasswordException("The password is too short!");
+        }
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -37,6 +41,7 @@ public class Employee {
         this.updated_at =updated_at;
     }
 
+    //getter methods
     public String getId() {
         return id;
     }
@@ -77,6 +82,7 @@ public class Employee {
         return updated_at;
     }
 
+    //setter methods
     public void setId(String id) {
         this.id = id;
     }
@@ -93,7 +99,10 @@ public class Employee {
         this.national_id = national_id;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) throws UserPasswordException{
+        if (password.length() < 3){
+            throw new UserPasswordException("The password is too short!");
+        }
         this.password = password;
     }
 
